@@ -46,29 +46,12 @@ public class ClientManagerThread extends Thread{
                             }
                         }
 
-                    } else if(filt[1].equals("image")) {
-                        int count = Integer.parseInt(filt[3]);
-                        for (int i = 0; i < SocketServer.list.size(); i++) {
-                            if(filt[0].equals(SocketServer.list.get(i).getTo_authNum())) {
-                                for(int j = 0; j < count; j++) {
-                                    try {
-                                        OutputStream os = SocketServer.list.get(i).getOutput();
-                                        DataOutputStream dos = new DataOutputStream(os);
-                                        dos.writeUTF(text);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                            }
-                        }
-
                     } else {
                         for(int i=0;i<SocketServer.list.size();i++){
 
                                 System.out.println("메시지 최초 전송 스레드 아웃풋 반복문 시작");
-                                // 보내주는 유저의 수만큼 호출이 됨. 그니까 SocketServer.m_OutputList 의 인덱스 수 만큼 반복해서 보내주는거임.
-                                // 방을 나누려면 여기서 조건문 걸어서 나눠줘야 할 듯. -
+                                // 보내주는 유저의 수만큼 호출이 됨. 그니까 SocketServer.m_OutputList 의 인덱스 수 만큼 반복해서 보내준다.
+                                // 방을 나누려면 여기서 조건문 걸어서 나눠줘야 한
                                 try {
                                     System.out.println("보내주는 거임 : " + filt[0] + "-> " + SocketServer.list.get(i).getTo_authNum());
 
@@ -78,7 +61,6 @@ public class ClientManagerThread extends Thread{
                                     System.out.println(filt[0]+ "에게 " + filt[1] + " 전송됨" );
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    System.out.println("스레드 Exception 발동");
                                 }
                         }
                     }
